@@ -54,7 +54,7 @@ jobs:
         uses: docker/build-push-action@v2 
         with:
           push: true
-          tags: xarwest/infra:latest
+          tags: xarwest/infra2:latest
   deploy:
     runs-on: ubuntu-latest
     needs: build_and_push_to_docker_hub
@@ -68,7 +68,7 @@ jobs:
         passphrase: ${{ secrets.PASSPHRASE }}
         script: |
           # Выполняет pull образа с DockerHub
-          sudo docker pull xarwest/infra
+          sudo docker pull xarwest/infra2
           #остановка всех контейнеров
           sudo docker stop $(sudo docker ps -a -q)
-          sudo docker run --rm -d -p 5000:5000 xarwest/infra
+          sudo docker run --rm -d -p 5000:5000 xarwest/infra2
